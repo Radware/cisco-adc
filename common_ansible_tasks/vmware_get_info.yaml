@@ -1,0 +1,22 @@
+- name: Cisco Secure ADC + VMWare Provisioning 
+  hosts: localhost
+  connection: local
+  gather_facts: true
+ 
+  vars_files:
+    - vars.yaml
+
+  tasks:
+  - name: Get VM Info
+    register: vminfo
+    vmware_guest_info:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ adcvm_name }}"
+      datacenter: "{{ adcvm_datacenter }}"
+      folder: "{{ adcvm_folder }}"
+      
+  - debug:
+      var: vminfo

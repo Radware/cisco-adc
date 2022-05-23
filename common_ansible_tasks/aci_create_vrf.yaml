@@ -1,0 +1,9 @@
+  - name: Create a VRF for the Tenant
+    cisco.aci.aci_vrf:
+      hostname: "{{ apic_hostname }}"
+      username: "{{ apic_username }}"
+      password: "{{ apic_password }}"
+      vrf: radware_demo_vrf
+      tenant: "{{ apic_tenant }}"
+      state: present
+      validate_certs: false
