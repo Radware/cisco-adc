@@ -1,0 +1,28 @@
+- name: Cisco Secure ADC + VMWare Provisioning 
+  hosts: localhost
+  connection: local
+  gather_facts: true
+ 
+  vars_files:
+    - vars.yaml
+
+  tasks:
+  - name: Change power state of Cisco Secure ADC
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: SecureADC-autoclone-01
+      datacenter: "{{ adcvm_datacenter }}"
+      state: poweredoff
+
+  - name: Delete Cisco Secure ADC
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: AlteonOS-autoclone-01
+      datacenter: "{{ adcvm_datacenter }}"
+      state: absent

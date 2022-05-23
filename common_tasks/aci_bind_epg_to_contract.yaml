@@ -1,0 +1,11 @@
+- name: Add a new contract to EPG binding
+  cisco.aci.aci_epg_to_contract:
+    host: "{{ apic }}"
+    username: "{{ admin }}"
+    password: "{{ password }}"
+    tenant: demo
+    ap: web_hosts
+    epg: web_hosts
+    contract: web_app_http
+    contract_type: provider
+    state: present

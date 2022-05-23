@@ -1,0 +1,9 @@
+  - name: Create APIC Tenant
+    cisco.aci.aci_tenant:
+      hostname: "{{ apic_hostname }}"
+      username: "{{ apic_username }}"
+      password: "{{ apic_password }}"
+      tenant: radware
+      description: Development tenant
+      state: present
+      validate_certs: false
